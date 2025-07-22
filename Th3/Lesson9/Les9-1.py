@@ -1,4 +1,4 @@
-a = int(input())
-b = int(input())
-for i in range(a, b-1, -1):
-    print(i)
+n = int(input("Введите количество чисел: "))
+a = list(map(int, input(f"Введите {n} чисел через пробел: ").split()))
+b = set(a[:n])
+print("Количество разных чисел:",len(b))

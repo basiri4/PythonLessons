@@ -1,4 +1,7 @@
-a = int(input())
-b = int(input())
-for i in range(a, b-1, -1):
-    print(i)
+n = int(input("Введите количество чисел: "))
+a = []
+b = []
+for i in range(n): 
+    a.append(int(input("Введите очередное число: ")))
+a.reverse()
+print(a)

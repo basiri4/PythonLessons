@@ -1,4 +1,4 @@
-a = int(input())
-b = int(input())
-for i in range(a, b-1, -1):
-    print(i)
+a = input("Введите строку без пробелов: ")
+b = a[::-1]
+if a == b: print("Это палиндром")
+else: print("Это не палиндром")

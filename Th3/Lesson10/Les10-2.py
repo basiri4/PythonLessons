@@ -1,4 +1,5 @@
-a = int(input())
-b = int(input())
-for i in range(a, b-1, -1):
-    print(i)
+a = dict()
+for i in range(10,-6,-1):
+    a[i] = {i**i}
+print(a)
+
