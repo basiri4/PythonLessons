@@ -1,4 +1,17 @@
-a = int(input())
-b = int(input())
-for i in range(a, b-1, -1):
-    print(i)
+class Transport:
+    def __init__(self, name, max_speed, mileage):
+        self.name = name
+        self.max_speed = max_speed
+        self.mileage = mileage
+
+    def seating_capacity(self, capacity):
+        return f"Вместимость одного автобуса {self.name}: {capacity} пассажиров"
+
+class Autobus(Transport):
+    seating_capacity = 50
+
+    def seating_capacity(self, capacity=50):
+        return super().seating_capacity(capacity)
+
+bus = Autobus("Renaul Logan", 180, 12)
+print(bus.seating_capacity())
