@@ -5,8 +5,8 @@ from utils import randcell2
 
 CELL_TYPES = "🟩🌲🌊🏥🏦🔥"
 TREE_BONUS = 100
-UPGRADE_COST = 2000
-LIFE_COST = 100
+UPGRADE_COST = 500
+LIFE_COST = 500
 
 class Map:
 
@@ -17,8 +17,8 @@ class Map:
         self.generate_forest(2, 10)
         self.generate_river(20)
         self.generate_river(20)
-        #self.generate_river(10)
-        #self.generate_river(30)
+        self.generate_river(10)
+        self.generate_river(30)
         self.add_fire()
         self.add_fire()
         self.add_fire()
@@ -33,9 +33,9 @@ class Map:
             for ci in range(self.w):
                 cell = self.cells[ri][ci]
                 if (clouds.cells[ri][ci] == 1):
-                    print("☁️", end="")
+                    print("⬜", end="")
                 elif (clouds.cells[ri][ci] == 2):
-                    print("⚡", end="")
+                    print("🟥", end="")
                 elif (helico.x == ri and helico.y == ci):
                     print('🚁', end="")
                 elif cell >=0 and cell < len(CELL_TYPES): print(CELL_TYPES[cell], end="")
@@ -99,8 +99,9 @@ class Map:
         for i in range(10):
             self.add_fire()
 
-    def process_helicopter(self, helico):
+    def process_helicopter(self, helico, clouds):
         c = self.cells[helico.x][helico.y]
+        d = clouds.cells[helico.x][helico.y]
         if (c == 2):
             helico.tank = helico.mxtank
         elif (c == 5) and helico.tank > 0:
@@ -109,11 +110,20 @@ class Map:
             helico.score += TREE_BONUS
         elif (c == 4) and helico.score >= UPGRADE_COST:
             helico.score -= UPGRADE_COST
-            helico.mxtank += 1
+            helico.mxtank += 1000
         elif (c == 3) and helico.score >= LIFE_COST:
             helico.score -= LIFE_COST
-            helico.life += 1
+            helico.life += 100
+        if (d == 2):
+            helico.life -= 1
+        if helico.life == 0:
+            helico.game_over()
 
+    def export_data(self):
+        return {"cells": self.cells}
+
+    def import_data(self, data):
+        self.cells = data["cells"] or [[0 for i in range(self.w)] for j in range(self.h)]
 
 
 
