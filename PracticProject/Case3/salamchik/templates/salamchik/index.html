@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Сайт</title>
+    <style>
+        .forma {
+            border: 1px solid black;
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 50px;
+        }
+        .btn {
+            background-color: lightblue;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="forma">
+        <h3>Введи имя</h3>
+        
+        {% if err %}
+            <p style="color: red;">{{ err }}</p>
+        {% endif %}
+        
+        <form action="" method="POST">
+            {% csrf_token %}
+            <input type="text" name="name">
+            <button type="submit" class="btn">Submit</button>
+        </form>
+        
+        {% if text_hello %}
+            <h2 style="color: blue;">{{ text_hello }}</h2>
+        {% endif %}
+    </div>
+
+</body>
+</html>

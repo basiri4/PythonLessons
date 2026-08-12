@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Калькулятор</title>
+    <style>
+        .calc {
+            width: 250px;
+            margin: 50px auto;
+            border: 2px solid gray;
+            padding: 10px;
+        }
+        .btn {
+            margin: 5px;
+            padding: 5px;
+        }
+        #res {
+            margin-top: 15px;
+            height: 30px;
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calc">
+        <input type="text" id="in1">
+        <br><br>
+        <input type="text" id="in2">
+        <br><br>
+        
+        <button class="btn" onclick="f_sum()">сумма</button>
+        <button class="btn" onclick="f_razn()">разность</button>
+        <button class="btn" onclick="f_proizv()">произведение</button>
+        <button class="btn" onclick="f_del()">деление</button>
+
+        <div id="res"></div>
+    </div>
+
+    <script>
+        function check(a, b) {
+            if (a == "" || b == "" || isNaN(a) || isNaN(b)) {
+                return false;
+            }
+            return true;
+        }
+
+        function f_sum() {
+            var a = document.getElementById("in1").value;
+            var b = document.getElementById("in2").value;
+            if (check(a, b) == false) {
+                document.getElementById("res").innerHTML = "ошибка не цифры";
+            } else {
+                document.getElementById("res").innerHTML = Number(a) + Number(b);
+            }
+        }
+
+        function f_razn() {
+            var a = document.getElementById("in1").value;
+            var b = document.getElementById("in2").value;
+            if (check(a, b) == false) {
+                document.getElementById("res").innerHTML = "ошибка не цифры";
+            } else {
+                document.getElementById("res").innerHTML = Number(a) - Number(b);
+            }
+        }
+
+        function f_proizv() {
+            var a = document.getElementById("in1").value;
+            var b = document.getElementById("in2").value;
+            if (check(a, b) == false) {
+                document.getElementById("res").innerHTML = "ошибка не цифры";
+            } else {
+                document.getElementById("res").innerHTML = Number(a) * Number(b);
+            }
+        }
+
+        function f_del() {
+            var a = document.getElementById("in1").value;
+            var b = document.getElementById("in2").value;
+            if (check(a, b) == false) {
+                document.getElementById("res").innerHTML = "ошибка не цифры";
+            } else {
+                if (Number(b) == 0) {
+                    document.getElementById("res").innerHTML = "ошибка деления на 0";
+                } else {
+                    document.getElementById("res").innerHTML = Number(a) / Number(b);
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>

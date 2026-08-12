@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Счетчик</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #e0eafc, #cfdef3);
+            text-align: center;
+            margin-top: 100px;
+        }
+        #okno {
+            font-size: 40px;
+            background-color: red;
+            width: 100px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+        .btn {
+            background: linear-gradient(to bottom, #ffefba, #ffffff);
+            border-radius: 5px;
+            width: 50px;
+            height: 50px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <button class="btn" id="minus" onclick="clickMinus()">-</button>
+        <div id="okno">0</div>
+        <button class="btn" id="plus" onclick="clickPlus()">+</button>
+    </div>
+    
+    <div id="text-limit" style="margin-top: 20px; color: red;"></div>
+
+    <script>
+        var count = 0;
+
+        function checkColor() {
+            var okno = document.getElementById("okno");
+            if (count > 0) {
+                okno.style.backgroundColor = "yellow";
+            } else if (count < 0) {
+                okno.style.backgroundColor = "green";
+            } else {
+                okno.style.backgroundColor = "red";
+            }
+        }
+
+        function checkLimits() {
+            var btnP = document.getElementById("plus");
+            var btnM = document.getElementById("minus");
+            var text = document.getElementById("text-limit");
+
+            if (count == 10) {
+                btnP.disabled = true;
+                text.innerHTML = "вы достигли экстремального значения";
+            } else if (count == -10) {
+                btnM.disabled = true;
+                text.innerHTML = "вы достигли экстремального значения";
+            } else {
+                btnP.disabled = false;
+                btnM.disabled = false;
+                text.innerHTML = "";
+            }
+        }
+
+        function clickPlus() {
+            count = count + 1;
+            document.getElementById("okno").innerHTML = count;
+            checkColor();
+            checkLimits();
+        }
+
+        function clickMinus() {
+            count = count - 1;
+            document.getElementById("okno").innerHTML = count;
+            checkColor();
+            checkLimits();
+        }
+    </script>
+
+</body>
+</html>
